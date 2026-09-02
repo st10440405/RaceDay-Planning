@@ -38,3 +38,5 @@
 | POST | `/api/enrolments` | Enroll a participant in an event category | Participant | `{ "eventId", "categoryId" }` | `201 Created` with enrolment ID |
 | GET | `/api/enrolments/participant/{id}` | Get enrolments for a participant | Participant | None | `200 OK` with list of enrolments |
 | GET | `/api/enrolments/event/{id}` | Get enrolments for an event | Organiser | None | `200 OK` with list of enrolments |
+
+| GET | /api/participants | Get all participants | Admin | None | 200 OK |
