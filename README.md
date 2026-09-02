@@ -17,3 +17,5 @@ The project utilizes GitHub Actions for Continuous Integration and Continuous De
 
 ## Roles Details
 Roles allow secure access.
+## Project Setup
+Instructions to run.
