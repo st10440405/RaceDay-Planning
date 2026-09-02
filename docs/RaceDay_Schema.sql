@@ -3,10 +3,22 @@
 -- =============================================
 
 -- Create the database (Uncomment if needed)
--- CREATE DATABASE RaceDayDB;
--- GO
--- USE RaceDayDB;
--- GO
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'RaceDayDB')
+BEGIN
+    EXEC('CREATE DATABASE RaceDayDB');
+END
+GO
+USE RaceDayDB;
+GO
+
+-- Drop tables if they exist to avoid errors on rerun
+DROP TABLE IF EXISTS Results;
+DROP TABLE IF EXISTS Enrolments;
+DROP TABLE IF EXISTS EventCategories;
+DROP TABLE IF EXISTS Events;
+DROP TABLE IF EXISTS Categories;
+DROP TABLE IF EXISTS Participants;
+DROP TABLE IF EXISTS Organisers;
 
 -- 1. Create Organisers Table
 CREATE TABLE Organisers (
@@ -66,6 +78,15 @@ CREATE TABLE Enrolments (
     CONSTRAINT FK_Enrolments_Categories FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 );
 
+-- 7. Create Results Table
+CREATE TABLE Results (
+    ResultID INT IDENTITY(1,1) PRIMARY KEY,
+    EnrolmentID INT NOT NULL UNIQUE,
+    FinishTime TIME(0) NOT NULL,
+    Position INT,
+    CONSTRAINT FK_Results_Enrolments FOREIGN KEY (EnrolmentID) REFERENCES Enrolments(EnrolmentID)
+);
+
 -- =============================================
 -- Insert Sample Data
 -- =============================================
@@ -105,6 +126,11 @@ INSERT INTO Enrolments (ParticipantID, EventID, CategoryID, Status) VALUES
 (1, 1, 1, 'Registered'),
 (2, 2, 4, 'Registered'),
 (1, 3, 2, 'Registered');
+
+-- Insert Results
+INSERT INTO Results (EnrolmentID, FinishTime, Position) VALUES 
+(1, '00:25:30', 1),
+(3, '00:55:10', 3);
 
 -- Index for Email
 CREATE INDEX IX_Organisers_Email ON Organisers(Email);

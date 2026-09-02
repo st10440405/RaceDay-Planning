@@ -39,9 +39,19 @@
 | GET | `/api/enrolments/participant/{id}` | Get enrolments for a participant | Participant | None | `200 OK` with list of enrolments |
 | GET | `/api/enrolments/event/{id}` | Get enrolments for an event | Organiser | None | `200 OK` with list of enrolments |
 
-| GET | /api/participants | Get all participants | Admin | None | 200 OK |
-| DELETE | /api/participants/{id} | Delete a participant | Admin | None | 204 No Content |
-| PUT | /api/participants/{id} | Update a participant | Participant | { data } | 200 OK |
+| GET | `/api/participants` | Get all participants | Admin | None | `200 OK` |
+| GET | `/api/participants/{id}` | Get a specific participant (User Profile) | Participant/Admin | None | `200 OK` with participant details |
+| DELETE | `/api/participants/{id}` | Delete a participant | Admin | None | `204 No Content` |
+| PUT | `/api/participants/{id}` | Update a participant | Participant | `{ data }` | `200 OK` |
+
+## Results
+
+| Method | Route | Description | Role Required | Request Body | Expected Response |
+|---|---|---|---|---|---|
+| POST | `/api/results` | Capture a participant's result for an enrolment | Organiser | `{ "enrolmentId", "finishTime", "position" }` | `201 Created` with result ID |
+| GET | `/api/results/enrolment/{id}` | Get result for a specific enrolment | None | None | `200 OK` with result details |
+| GET | `/api/results/participant/{id}` | Get all results for a participant | Participant | None | `200 OK` with list of results |
+| PUT | `/api/results/{id}` | Update a result | Organiser | `{ "finishTime", "position" }` | `200 OK` |
 # Authentication
 JWT will be used.
 # Rate Limiting
