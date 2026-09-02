@@ -1,0 +1,9 @@
+node_modules/
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.sqlite
+*.mdf
+*.ldf
