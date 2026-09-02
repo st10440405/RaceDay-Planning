@@ -46,3 +46,5 @@
 JWT will be used.
 # Rate Limiting
 Standard API rate limits.
+# Notes
+Planning complete.
