@@ -7,9 +7,34 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  validate-structure:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Dummy test
-        run: echo "Build successful"
+      
+      - name: Check for /docs folder
+        run: |
+          if [ ! -d "docs" ]; then
+            echo "Error: /docs directory not found!"
+            exit 1
+          fi
+          echo "/docs directory exists."
+          
+      - name: Check for required planning files
+        run: |
+          REQUIRED_FILES=("docs/API_Endpoint_Plan.md" "docs/RaceDay_Schema.sql" "docs/ERD.png")
+          MISSING_FILES=0
+          
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "Error: Required file '$file' is missing!"
+              MISSING_FILES=1
+            else
+              echo "Found required file: $file"
+            fi
+          done
+          
+          if [ $MISSING_FILES -eq 1 ]; then
+            exit 1
+          fi
+          echo "All required files are present."
