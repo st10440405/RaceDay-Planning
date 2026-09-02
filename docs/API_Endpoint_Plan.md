@@ -42,3 +42,5 @@
 | GET | /api/participants | Get all participants | Admin | None | 200 OK |
 | DELETE | /api/participants/{id} | Delete a participant | Admin | None | 204 No Content |
 | PUT | /api/participants/{id} | Update a participant | Participant | { data } | 200 OK |
+# Authentication
+JWT will be used.
