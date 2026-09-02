@@ -111,3 +111,4 @@ CREATE INDEX IX_Organisers_Email ON Organisers(Email);
 -- Sample Query
 -- SELECT * FROM Events;
 -- End of script
+-- Checked
