@@ -14,3 +14,6 @@ The project utilizes GitHub Actions for Continuous Integration and Continuous De
 
 ## Video Presentation
 [Link to Unlisted YouTube Video](https://youtube.com/)
+
+## Roles Details
+Roles allow secure access.
