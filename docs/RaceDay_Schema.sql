@@ -110,3 +110,4 @@ INSERT INTO Enrolments (ParticipantID, EventID, CategoryID, Status) VALUES
 CREATE INDEX IX_Organisers_Email ON Organisers(Email);
 -- Sample Query
 -- SELECT * FROM Events;
+-- End of script
