@@ -40,3 +40,4 @@
 | GET | `/api/enrolments/event/{id}` | Get enrolments for an event | Organiser | None | `200 OK` with list of enrolments |
 
 | GET | /api/participants | Get all participants | Admin | None | 200 OK |
+| DELETE | /api/participants/{id} | Delete a participant | Admin | None | 204 No Content |
