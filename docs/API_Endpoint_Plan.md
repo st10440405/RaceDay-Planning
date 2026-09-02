@@ -44,3 +44,5 @@
 | PUT | /api/participants/{id} | Update a participant | Participant | { data } | 200 OK |
 # Authentication
 JWT will be used.
+# Rate Limiting
+Standard API rate limits.
