@@ -19,3 +19,5 @@ The project utilizes GitHub Actions for Continuous Integration and Continuous De
 Roles allow secure access.
 ## Project Setup
 Instructions to run.
+## Contribution
+Fork and PR.
