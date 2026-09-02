@@ -21,3 +21,5 @@ Roles allow secure access.
 Instructions to run.
 ## Contribution
 Fork and PR.
+## License
+MIT.
