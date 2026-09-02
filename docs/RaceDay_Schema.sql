@@ -105,3 +105,6 @@ INSERT INTO Enrolments (ParticipantID, EventID, CategoryID, Status) VALUES
 (1, 1, 1, 'Registered'),
 (2, 2, 4, 'Registered'),
 (1, 3, 2, 'Registered');
+
+-- Index for Email
+CREATE INDEX IX_Organisers_Email ON Organisers(Email);
