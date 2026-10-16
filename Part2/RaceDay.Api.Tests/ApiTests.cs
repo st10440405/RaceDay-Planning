@@ -76,6 +76,17 @@ public class ApiTests
     }
 
     [Fact]
+    public async Task OrganiserCanUpdateOwnProfile()
+    {
+        using var app = new ApiFactory(); using var client = app.CreateClient();
+        await RegisterAndLoginOrganiser(client);
+        Assert.Equal(HttpStatusCode.NoContent, (await client.PutAsJsonAsync("/api/profile", new { name = "Organiser Updated" })).StatusCode);
+        var profile = await client.GetStringAsync("/api/profile");
+        Assert.Contains("Organiser Updated", profile);
+        Assert.Contains("Organiser", profile);
+    }
+
+    [Fact]
     public async Task RegistrationHashesPasswordAndRejectsDuplicateEmail()
     {
         using var app = new ApiFactory(); using var client = app.CreateClient();
