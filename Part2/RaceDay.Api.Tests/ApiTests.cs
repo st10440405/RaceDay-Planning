@@ -53,6 +53,16 @@ public class ApiTests
     }
 
     [Fact]
+    public async Task LogoutClearsAuthenticatedSession()
+    {
+        using var app = new ApiFactory(); using var client = app.CreateClient();
+        await RegisterAndLoginOrganiser(client);
+        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/profile")).StatusCode);
+        Assert.Equal(HttpStatusCode.NoContent, (await client.PostAsync("/api/logout", null)).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await client.GetAsync("/api/profile")).StatusCode);
+    }
+
+    [Fact]
     public async Task RegistrationHashesPasswordAndRejectsDuplicateEmail()
     {
         using var app = new ApiFactory(); using var client = app.CreateClient();
