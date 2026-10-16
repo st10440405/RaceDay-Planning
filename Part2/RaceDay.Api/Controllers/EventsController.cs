@@ -25,6 +25,7 @@ public class EventsController(RaceDayContext db) : ControllerBase
     public async Task<IActionResult> Create(EventRequest request)
     {
         if (UserId is null) return Unauthorized(); if (!IsOrganiser) return StatusCode(StatusCodes.Status403Forbidden);
+        if (request.EventDate == default || request.EventDate.Date < DateTime.Today) return BadRequest(new { message = "Event date must be today or later." });
         var item = new RaceEvent { OrganiserId = UserId.Value, Name = request.Name.Trim(), EventDate = request.EventDate.Date, Location = request.Location.Trim(), Description = request.Description ?? "", DistanceKm = request.DistanceKm, EventType = request.EventType };
         db.Events.Add(item); await db.SaveChangesAsync(); return CreatedAtAction(nameof(Get), new { id = item.EventId }, item);
     }
@@ -34,6 +35,7 @@ public class EventsController(RaceDayContext db) : ControllerBase
     public async Task<IActionResult> Update(int id, EventRequest request)
     {
         if (UserId is null) return Unauthorized(); if (!IsOrganiser) return StatusCode(StatusCodes.Status403Forbidden);
+        if (request.EventDate == default || request.EventDate.Date < DateTime.Today) return BadRequest(new { message = "Event date must be today or later." });
         var item = await db.Events.FindAsync(id); if (item is null) return NotFound(); if (item.OrganiserId != UserId) return StatusCode(StatusCodes.Status403Forbidden);
         item.Name = request.Name.Trim(); item.EventDate = request.EventDate.Date; item.Location = request.Location.Trim(); item.Description = request.Description ?? ""; item.DistanceKm = request.DistanceKm; item.EventType = request.EventType;
         await db.SaveChangesAsync(); return NoContent();

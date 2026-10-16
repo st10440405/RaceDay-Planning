@@ -44,6 +44,15 @@ public class ApiTests
     }
 
     [Fact]
+    public async Task OrganiserCannotCreateEventInThePast()
+    {
+        using var app = new ApiFactory(); using var client = app.CreateClient();
+        await RegisterAndLoginOrganiser(client);
+        var response = await client.PostAsJsonAsync("/api/events", new { name = "Past Run", eventDate = DateTime.Today.AddDays(-1), location = "Park", description = "Run", distanceKm = 10, eventType = "Run" });
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+    }
+
+    [Fact]
     public async Task RegistrationHashesPasswordAndRejectsDuplicateEmail()
     {
         using var app = new ApiFactory(); using var client = app.CreateClient();
@@ -82,6 +91,13 @@ public class ApiTests
     }
 
     private static object EventBody() => new { name = "City Run", eventDate = DateTime.Today.AddDays(20), location = "Park", description = "Run", distanceKm = 10, eventType = "Run" };
+
+    private static async Task RegisterAndLoginOrganiser(HttpClient client)
+    {
+        await client.PostAsJsonAsync("/api/organisers/register", new { name = "Race Org", email = "org@example.com", password = "strong-pass-1" });
+        var response = await client.PostAsJsonAsync("/api/organisers/login", new { email = "org@example.com", password = "strong-pass-1" });
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
 }
 
 public class ApiFactory : WebApplicationFactory<Program>
