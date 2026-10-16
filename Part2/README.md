@@ -52,13 +52,17 @@ Entity Framework Core code-first migrations are in `RaceDay.Api/Data/Migrations`
 
 ## Tests and CI
 
+[![RaceDay API CI](https://github.com/st10440405/RaceDay-Planning/actions/workflows/part2-api.yml/badge.svg?branch=part-2)](https://github.com/st10440405/RaceDay-Planning/actions/workflows/part2-api.yml?query=branch%3Apart-2)
+
+Latest successful run: [RaceDay API CI on the `part-2` branch](https://github.com/st10440405/RaceDay-Planning/actions/runs/38886395339).
+
 Run locally with:
 
 ```powershell
 dotnet test RaceDay.sln
 ```
 
-GitHub Actions workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml). It restores, builds, and runs the tests on pushes and pull requests. A successful run screenshot must be added after the workflow runs in GitHub; this workspace does not yet contain a verified GitHub Actions run.
+GitHub Actions workflow: [`../.github/workflows/part2-api.yml`](../.github/workflows/part2-api.yml). It restores, builds, and runs the tests on pushes and pull requests. The run above completed successfully. Add a screenshot of the run page to this README if your marker requires a captured screenshot in addition to the live status link.
 
 ## Submission items to finish
 
