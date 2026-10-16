@@ -61,6 +61,10 @@ Entity Framework Core code-first migrations are in `RaceDay.Api/Data/Migrations`
 
 [![RaceDay API CI](https://github.com/st10440405/RaceDay-Planning/actions/workflows/part2-api.yml/badge.svg?branch=part-2)](https://github.com/st10440405/RaceDay-Planning/actions/workflows/part2-api.yml?query=branch%3Apart-2)
 
+Latest successful run: [RaceDay API CI on the `part-2` branch (Run #38891372690)](https://github.com/st10440405/RaceDay-Planning/actions/runs/38891372690).
+
+![Successful GitHub Actions build for the RaceDay API](docs/ci-success.png)
+
 Run locally with:
 
 ```powershell
