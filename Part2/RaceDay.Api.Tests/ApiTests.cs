@@ -63,6 +63,19 @@ public class ApiTests
     }
 
     [Fact]
+    public async Task ParticipantCanUpdateOwnProfile()
+    {
+        using var app = new ApiFactory(); using var client = app.CreateClient();
+        await client.PostAsJsonAsync("/api/participants/register", new { name = "Runner", email = "runner@example.com", password = "strong-pass-1", age = 26, gender = "Other" });
+        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/participants/login", new { email = "runner@example.com", password = "strong-pass-1" })).StatusCode);
+        var update = await client.PutAsJsonAsync("/api/profile", new { name = "Runner Updated", age = 27, gender = "Other" });
+        Assert.Equal(HttpStatusCode.NoContent, update.StatusCode);
+        var profile = await client.GetStringAsync("/api/profile");
+        Assert.Contains("Runner Updated", profile);
+        Assert.Contains("27", profile);
+    }
+
+    [Fact]
     public async Task RegistrationHashesPasswordAndRejectsDuplicateEmail()
     {
         using var app = new ApiFactory(); using var client = app.CreateClient();
