@@ -1,5 +1,9 @@
 # RaceDay System
 
+## Part 2 API
+
+The REST API implementation, setup instructions, endpoint list, and test details are in [`Part2/README.md`](Part2/README.md). CI for the API runs through `.github/workflows/part2-api.yml` on pushes and pull requests.
+
 ## System Description
 RaceDay is an event management system designed to streamline the organization of athletic events and races. It provides a platform where Organisers can create and manage events, and Participants can enroll in various categories associated with those events. The system ensures robust data integrity and offers a seamless registration experience for all users.
 
